@@ -22,3 +22,28 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+argLength = len(sys.argv)
+
+now = datetime.now()
+
+
+def printCalendar(month=now.month, year=now.year):
+    print(calendar.month(year, month))
+
+
+argError = 'The first argument must be a month in number form, from 1 to 12. The second argument (if entered) must be a year in number form'
+
+try:
+    if argLength == 1:
+        printCalendar()
+    elif argLength == 2:
+        if int(sys.argv[1]) >= 1 and int(sys.argv[1]) <= 12:
+            printCalendar(int(sys.argv[1]))
+        else:
+            print(argError)
+    else:
+        if int(sys.argv[1]) >= 1 and int(sys.argv[1]) <= 12:
+            printCalendar(int(sys.argv[1]), int(sys.argv[2]))
+except ValueError:
+    print(argError)
